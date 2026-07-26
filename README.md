@@ -167,7 +167,7 @@ npm
 
 Setup
 
-git clone https://github.com/YOUR-USERNAME/threatsequence.git
+git clone https://github.com/Zachary200114/ThreatSequence.git
 cd threatsequence
 npm install
 npm run dev
