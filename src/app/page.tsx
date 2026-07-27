@@ -1212,47 +1212,53 @@ export default function Home() {
   const unreadCount = notifications.filter((item) => !item.read).length;
 
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const saved = JSON.parse(stored) as PersistedState;
-        if (saved.activeView) setActiveView(saved.activeView);
-        if (saved.selectedIncidentId) {
-          setSelectedIncidentId(saved.selectedIncidentId);
+    const restoreTimer = window.setTimeout(() => {
+      try {
+        const stored = window.localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const saved = JSON.parse(stored) as PersistedState;
+          if (saved.activeView) setActiveView(saved.activeView);
+          if (saved.selectedIncidentId) {
+            setSelectedIncidentId(saved.selectedIncidentId);
+          }
+          if (saved.notifications) setNotifications(saved.notifications);
+          if (saved.workflows) {
+            setWorkflows({ ...initialWorkflows, ...saved.workflows });
+          }
+          if (saved.settings) {
+            setSettingsState({
+              ...defaultSettings,
+              ...saved.settings,
+              sourceEnabled: {
+                ...defaultSettings.sourceEnabled,
+                ...saved.settings.sourceEnabled,
+              },
+            });
+          }
+          if (typeof saved.eventCount === "number") {
+            setEventCount(saved.eventCount);
+          }
+          if (saved.liveEvents) setLiveEvents(saved.liveEvents);
+          if (typeof saved.simulatedIncidentVisible === "boolean") {
+            setSimulatedIncidentVisible(saved.simulatedIncidentVisible);
+          }
+          if (saved.severityOverrides) {
+            setSeverityOverrides(saved.severityOverrides);
+          }
+          if (typeof saved.simulationCursor === "number") {
+            setSimulationCursor(saved.simulationCursor);
+          }
         }
-        if (saved.notifications) setNotifications(saved.notifications);
-        if (saved.workflows) {
-          setWorkflows({ ...initialWorkflows, ...saved.workflows });
-        }
-        if (saved.settings) {
-          setSettingsState({
-            ...defaultSettings,
-            ...saved.settings,
-            sourceEnabled: {
-              ...defaultSettings.sourceEnabled,
-              ...saved.settings.sourceEnabled,
-            },
-          });
-        }
-        if (typeof saved.eventCount === "number") {
-          setEventCount(saved.eventCount);
-        }
-        if (saved.liveEvents) setLiveEvents(saved.liveEvents);
-        if (typeof saved.simulatedIncidentVisible === "boolean") {
-          setSimulatedIncidentVisible(saved.simulatedIncidentVisible);
-        }
-        if (saved.severityOverrides) {
-          setSeverityOverrides(saved.severityOverrides);
-        }
-        if (typeof saved.simulationCursor === "number") {
-          setSimulationCursor(saved.simulationCursor);
-        }
+      } catch {
+        setToast(
+          "Saved workspace could not be restored. Defaults were loaded.",
+        );
+      } finally {
+        setHydrated(true);
       }
-    } catch {
-      setToast("Saved workspace could not be restored. Defaults were loaded.");
-    } finally {
-      setHydrated(true);
-    }
+    }, 0);
+
+    return () => window.clearTimeout(restoreTimer);
   }, []);
 
   useEffect(() => {
@@ -1271,11 +1277,21 @@ export default function Home() {
       simulationCursor,
     };
 
+    let saveErrorTimer: number | undefined;
+
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
-      setToast("Changes could not be saved in this browser.");
+      saveErrorTimer = window.setTimeout(() => {
+        setToast("Changes could not be saved in this browser.");
+      }, 0);
     }
+
+    return () => {
+      if (saveErrorTimer !== undefined) {
+        window.clearTimeout(saveErrorTimer);
+      }
+    };
   }, [
     activeView,
     eventCount,
