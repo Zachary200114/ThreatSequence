@@ -1,98 +1,113 @@
-ThreatSequence
+# ThreatSequence
 
-An interactive security operations prototype for reconstructing attack behavior, assessing risk, and managing incidents from detection through resolution.
+### AI-Assisted Security Operations and Behavioral Threat Analysis
 
-Built with Next.js, TypeScript, Tailwind CSS, and Lucide React.
+ThreatSequence is an interactive security operations dashboard that correlates simulated security telemetry, reconstructs attack behavior, assesses incident risk, and supports an analyst response workflow from detection through resolution.
 
-ThreatSequence is a portfolio prototype. Its incidents, telemetry, predictions, and AI assessments are simulated and do not represent a production detection system.
+Built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and **Lucide React**.
+
+> **Project status:** Complete portfolio prototype. All incidents, telemetry, predictions, and AI assessments are simulated for demonstration purposes.
 
 <p align="center">
   <img
     src="assets/ai-analysis.png"
-    alt="ThreatSequence AI analysis with incident reasoning, risk predictions, supporting signals, and response guidance"
+    alt="ThreatSequence AI analysis showing incident reasoning, supporting evidence, risk predictions, and recommended actions"
     width="100%"
   >
 </p>
 
-Why ThreatSequence
+---
 
-Security analysts rarely investigate a single alert in isolation. They piece together activity across endpoints, networks, identities, cloud services, and email systems to understand what happened and what may happen next.
+## Overview
 
-ThreatSequence explores that workflow through a polished SOC interface. Instead of presenting disconnected alerts, it organizes related events into a behavioral sequence and gives the analyst the context needed to investigate and respond.
+Security analysts rarely investigate a single alert in isolation. They correlate activity across endpoints, networks, identities, cloud services, and email systems to determine what happened, how events are connected, and what an attacker may do next.
 
-The project demonstrates:
+ThreatSequence demonstrates that process through a unified SOC interface. The application:
 
-Security-event correlation and MITRE ATT&CK mapping
+- Correlates related security activity into prioritized incidents
+- Organizes events into behavioral attack sequences
+- Maps observed behaviors to MITRE ATT&CK techniques
+- Produces explainable, simulated risk assessments
+- Predicts likely next-stage attacker behavior
+- Guides analysts through investigation and response
 
-Behavioral attack timelines and likely next-step prediction
+---
 
-Explainable risk assessments with supporting evidence
+## Core Features
 
-Analyst ownership, notes, and incident-status workflows
+### Incident Detection and Investigation
 
-Live telemetry simulation and source-health monitoring
+- Search and filter incidents by title, ID, host, severity, status, or MITRE ATT&CK technique
+- Compare incident timelines, confidence levels, supporting signals, and predicted actions
+- Review endpoint, identity, network, cloud, email, and file activity in one workspace
+- Open complete incident and AI-analysis views for deeper investigation
 
-Persistent, configurable browser-based workspace state
+### Behavioral Attack Sequencing
 
-Core Experience
+- Reconstruct related events as an ordered attack path
+- Display the security stage, source, timestamp, confidence, and technique for each event
+- Connect individual alerts into a readable incident narrative
+- Highlight the predicted next action based on the current sequence
 
-Capability
+### Analyst Response Workflow
 
-What it does
+- Assign incidents to an analyst
+- Add persistent investigation notes
+- Change incident severity and response status
+- Move cases through acknowledgment, investigation, containment, and resolution
+- Export the complete workspace as JSON
 
-Mission Control
+### Live SOC Simulation
 
-Summarizes environment health, active incidents, live metrics, attack timelines, and the selected incident's assessment.
+- Generate fictional telemetry automatically or manually
+- Pause, resume, and adjust simulation speed
+- Enable or disable individual telemetry sources
+- Escalate incidents as new supporting activity appears
+- Track live event counts, ingestion rate, and source health
 
-Incident Workspace
+### Workspace Experience
 
-Supports search, filtering, analyst assignment, investigation notes, severity changes, and response-state tracking.
+- Receive incident-linked notifications with unread tracking
+- Preserve incidents, notes, assignments, notifications, and settings after refresh
+- Switch between dashboard themes
+- Use a protected reset to restore the original demonstration state
+- Navigate the dashboard on desktop, tablet, or mobile
 
-Attack Graph
+---
 
-Presents correlated activity as an ordered path with security stages, event relationships, confidence, and MITRE ATT&CK techniques.
+## Interface
 
-AI Analysis
+### Behavioral Attack Graph
 
-Explains the simulated model conclusion through risk estimates, supporting signals, confidence, and recommended actions.
-
-Telemetry
-
-Simulates endpoint, network, identity, cloud, and email events while displaying volume, ingestion rate, and source health.
-
-Workspace Controls
-
-Provides simulation settings, notification tracking, browser persistence, JSON export, themes, and a protected reset.
-
-Interface
-
-Behavioral Attack Graph
-
-The graph turns related events into a readable attack path. Each node identifies the observed behavior, attack stage, data source, and associated MITRE ATT&CK technique.
+The Attack Graph converts correlated telemetry into an ordered behavioral path. Each stage shows what was observed, where it originated, how it relates to the incident, and which MITRE ATT&CK technique it represents.
 
 <p align="center">
   <img
     src="assets/attack-graph.png"
-    alt="ThreatSequence attack graph showing an ordered behavioral attack path"
+    alt="ThreatSequence behavioral attack graph with correlated security events and MITRE ATT&CK techniques"
     width="100%"
   >
 </p>
 
-Telemetry Health
+---
 
-The telemetry workspace shows connected security sources, pipeline health, event volume, and ingestion activity. The stream can be paused, resumed, accelerated, or advanced manually.
+### Telemetry Health
+
+The Telemetry workspace displays connected security sources, ingestion activity, event volume, and pipeline health. Analysts can control the simulation and watch new events affect the broader environment.
 
 <p align="center">
   <img
     src="assets/telem.png"
-    alt="ThreatSequence telemetry health dashboard and connected security data sources"
+    alt="ThreatSequence telemetry dashboard showing event volume, ingestion activity, and connected security sources"
     width="100%"
   >
 </p>
 
-Settings and Notifications
+---
 
-Simulation speed, alert thresholds, telemetry sources, and appearance can be configured from the settings panel. The notification center tracks unread alerts and links analysts directly to related incidents.
+### Settings and Notifications
+
+The settings panel controls simulation speed, alert thresholds, data sources, and appearance. The notification center tracks unread security activity and links alerts directly to their associated incidents.
 
 <table>
   <tr>
@@ -101,133 +116,122 @@ Simulation speed, alert thresholds, telemetry sources, and appearance can be con
   </tr>
   <tr>
     <td valign="top">
-      <img src="assets/dashboard-settings.png" alt="ThreatSequence simulation, telemetry, and appearance settings">
+      <img src="assets/dashboard-settings.png" alt="ThreatSequence simulation, telemetry-source, and appearance settings">
     </td>
     <td valign="top">
-      <img src="assets/noti.png" alt="ThreatSequence unread security notification center">
+      <img src="assets/noti.png" alt="ThreatSequence security notification center with unread incident alerts">
     </td>
   </tr>
 </table>
 
-How It Works
+---
 
-flowchart LR
-A["Simulated telemetry"] --> B["Event correlation"]
-B --> C["Attack sequence"]
-C --> D["Risk assessment"]
-D --> E["Analyst response"]
+## How It Works
 
-Client-side generators produce fictional endpoint, network, identity, cloud, and email events.
+1. **Generate telemetry**  
+   Client-side generators create fictional endpoint, identity, network, cloud, email, and file events.
 
-Related activity is grouped into an incident and ordered into a behavioral sequence.
+2. **Correlate activity**  
+   Related events are grouped into an incident and arranged into a behavioral sequence.
 
-Predefined analysis logic provides confidence, predicted risk, supporting signals, and response guidance.
+3. **Assess the incident**  
+   Predefined analysis logic provides a confidence score, risk estimate, supporting evidence, and predicted next action.
 
-The analyst can assign ownership, add notes, change status, contain activity, and resolve the incident.
+4. **Support analyst response**  
+   The analyst can assign ownership, add notes, adjust severity, contain activity, and resolve the incident.
 
-The workspace is stored in the browser so investigation state remains after a refresh.
+5. **Preserve the workspace**  
+   Browser storage retains the investigation state, preferences, and notifications after a refresh.
 
-Technology
+---
 
-Layer
+## Technology
 
-Technology
+- **Framework:** Next.js and React
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React
+- **Persistence:** Browser `localStorage`
+- **Deployment:** Vercel
 
-Application
+---
 
-Next.js and React
+## Run Locally
 
-Language
+### Requirements
 
-TypeScript
+- Node.js 20 or newer
+- npm
+- Git
 
-Interface
+### Installation
 
-Tailwind CSS
+1. Clone the repository:
 
-Icons
+   ```bash
+   git clone https://github.com/Zachary200114/ThreatSequence.git
+   ```
 
-Lucide React
+2. Enter the project directory:
 
-Persistence
+   ```bash
+   cd ThreatSequence
+   ```
 
-Browser localStorage
+3. Install the dependencies:
 
-Deployment
+   ```bash
+   npm install
+   ```
 
-Vercel-ready
+4. Start the development server:
 
-Run Locally
+   ```bash
+   npm run dev
+   ```
 
-Requirements
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Node.js 20 or newer
+### Production Build
 
-npm
-
-Setup
-
-git clone https://github.com/Zachary200114/ThreatSequence.git
-cd threatsequence
-npm install
-npm run dev
-
-Open http://localhost:3000.
-
-Production Build
-
+```bash
 npm run build
 npm start
+```
 
-Explore the Demo
+---
 
-For a quick walkthrough:
+## Suggested Demo
 
-Select incidents of different severities and compare their timelines and assessments.
+To explore the primary workflows:
 
-Search by incident ID, host, title, severity, or MITRE ATT&CK technique.
+1. Select incidents with different severities and compare their timelines.
+2. Search by incident ID, host, title, severity, or MITRE ATT&CK technique.
+3. Review the selected incident in the Attack Graph and AI Analysis views.
+4. Generate a telemetry event, then pause or change the simulation speed.
+5. Assign an analyst, add an investigation note, and update the incident status.
+6. Refresh the page to confirm the workspace persists.
+7. Export the workspace as JSON.
 
-Review the Attack Graph and full AI Analysis for the selected incident.
+---
 
-Generate a telemetry signal, then pause or change the speed of the live simulation.
+## Project Structure
 
-Assign an analyst, add an investigation note, and move the incident through the response workflow.
-
-Refresh to verify persistence, then export the workspace as JSON.
-
-Scope and Limitations
-
-All incidents, hosts, alerts, and telemetry are fictional.
-
-AI conclusions are simulated with predefined scenarios and client-side logic.
-
-No SIEM, EDR, identity provider, cloud platform, or threat-intelligence feed is connected.
-
-Workspace data is stored locally in each visitor's browser.
-
-The prototype has no authentication, shared database, or multi-user collaboration.
-
-It should not be used for production monitoring or automated security decisions.
-
-These boundaries make the project safe and easy to explore while keeping its claims accurate.
-
-<details>
-<summary><strong>Project structure</strong></summary>
-
-.
+```text
+ThreatSequence/
 ├── assets/
-│ ├── ai-analysis.png
-│ ├── attack-graph.png
-│ ├── dashboard-settings.png
-│ ├── noti.png
-│ └── telem.png
+│   ├── ai-analysis.png
+│   ├── attack-graph.png
+│   ├── dashboard-settings.png
+│   ├── noti.png
+│   └── telem.png
 ├── public/
 ├── src/
-│ └── app/
-│ ├── favicon.ico
-│ ├── globals.css
-│ ├── layout.tsx
-│ └── page.tsx
+│   └── app/
+│       ├── favicon.ico
+│       ├── globals.css
+│       ├── layout.tsx
+│       └── page.tsx
 ├── .gitignore
 ├── eslint.config.mjs
 ├── next.config.ts
@@ -236,28 +240,34 @@ These boundaries make the project safe and easy to explore while keeping its cla
 ├── postcss.config.mjs
 ├── README.md
 └── tsconfig.json
+```
 
-</details>
+---
 
-<details>
-<summary><strong>Potential next steps</strong></summary>
+## Scope and Limitations
 
-Backend API and database persistence
+- All incidents, alerts, hosts, identities, and telemetry are fictional.
+- AI conclusions use predefined scenarios and client-side demonstration logic.
+- No live SIEM, EDR, identity provider, cloud platform, or threat-intelligence feed is connected.
+- Workspace data is stored separately in each visitor's browser.
+- The application does not include authentication, a shared backend, or multi-user collaboration.
+- ThreatSequence should not be used for production monitoring or automated security decisions.
 
-Authentication and role-based access control
+---
 
-Real-time multi-user case collaboration
+## Future Development
 
-Sanitized public security-dataset ingestion
+- Backend API and database persistence
+- Authentication and role-based access control
+- Real-time, multi-user case collaboration
+- Sanitized public security-dataset ingestion
+- Auditable live-model outputs and analyst feedback
+- Automated accessibility and application testing
 
-Auditable live-model outputs and analyst feedback
+---
 
-Accessibility checks and automated testing
+## Author
 
-</details>
+**Zachary Ryan**
 
-Author
-
-Zachary Ryan
-
-Cybersecurity researcher, U.S. Navy veteran, and B.S. Cybersecurity student interested in security operations, AI security, and cybersecurity governance.
+U.S. Navy veteran and cybersecurity researcher focused on security operations, AI security, and cybersecurity governance.
