@@ -4,6 +4,9 @@
 
 ThreatSequence is an interactive security operations dashboard that correlates simulated security telemetry, reconstructs attack behavior, assesses incident risk, and supports an analyst response workflow from detection through resolution.
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Open_ThreatSequence-22c55e?style=for-the-badge)](https://threat-sequence.vercel.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-View_Source-181717?style=for-the-badge&logo=github)](https://github.com/Zachary200114/ThreatSequence)
+
 Built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and **Lucide React**.
 
 > **Project status:** Complete portfolio prototype. All incidents, telemetry, predictions, and AI assessments are simulated for demonstration purposes.
@@ -249,7 +252,7 @@ ThreatSequence/
 - All incidents, alerts, hosts, identities, and telemetry are fictional.
 - AI conclusions use predefined scenarios and client-side demonstration logic.
 - No live SIEM, EDR, identity provider, cloud platform, or threat-intelligence feed is connected.
-- Workspace data is stored separately in each visitor's browser.
+- Workspace data is stored separately in each visitor’s browser.
 - The application does not include authentication, a shared backend, or multi-user collaboration.
 - ThreatSequence should not be used for production monitoring or automated security decisions.
 
@@ -271,3 +274,6 @@ ThreatSequence/
 **Zachary Ryan**
 
 U.S. Navy veteran and cybersecurity researcher focused on security operations, AI security, and cybersecurity governance.
+
+- [Live ThreatSequence Application](https://threat-sequence.vercel.app)
+- [GitHub Profile](https://github.com/Zachary200114)
